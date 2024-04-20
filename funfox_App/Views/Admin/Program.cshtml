@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Program";
+    Layout = "~/Views/Shared/_admin_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-start button-strip">
+    <button class="btn button" onclick="window.location.href='@Url.Action("Add","AdminProgram")'"><i class="fa fa-plus-circle icon"></i> Add</button>
+    <button class="btn button" onclick="window.location.href='@Url.Action("List","AdminProgram")'"><i class="fa fa-list icon"></i> List</button>
+    @if (!string.IsNullOrEmpty(Context.Session.GetString("Bearer_Tokens")))
+    {
+        <label class="d-flex justify-content-end align-items-end pe-3">Hello @Html.Raw(Context.Session.GetString("IdentityUsername"))</label>
+    }
+</div>
+<!-- Placeholder for controls -->
+<div id="controlsPlaceholder" class="controls-placeholder">
+
+    <h4>Explore Our Short Courses and Certifications</h4>
+
+    <p>At <em>FunFox</em>, we pride ourselves on offering a diverse range of short courses and certifications designed to enhance your skills and propel your career forward. Whether you're looking to broaden your knowledge in a specific field or acquire new expertise, our programs cater to individuals at every stage of their professional journey.</p>
+
+    <h5>Why Choose Our Short Courses and Certifications?</h5>
+
+    <ol>
+        <li><strong>Expert-Led Instruction:</strong> Our courses are taught by industry experts who bring real-world experience and cutting-edge knowledge to the classroom. You'll learn from the best in the field, gaining insights and practical skills that are immediately applicable.</li>
+
+        <li><strong>Flexible Learning Options:</strong> We understand the importance of flexibility in today's busy world. That's why we offer a variety of learning formats, including in-person classes, online modules, and blended learning opportunities. Choose the format that best fits your schedule and learning preferences.</li>
+
+        <li><strong>Hands-On Experience:</strong> Many of our courses include hands-on projects, case studies, and practical exercises to ensure that you can apply what you learn in a real-world context. You'll have the opportunity to put your skills to the test and build a portfolio of work that showcases your capabilities.</li>
+
+        <li><strong>Industry-Recognized Certifications:</strong> Upon successful completion of our courses, you'll receive a certificate or certification that is recognized by employers and industry organizations alike. These credentials can help you stand out in a competitive job market and advance your career prospects.</li>
+    </ol>
+
+    <h5>Managing Programs at FunFox</h5>
+
+    <p>This screen serves as a centralized hub for managing the various programs offered at our institute. From here, administrators can:</p>
+
+    <ul>
+        <li><strong>Add New Programs:</strong> Easily create new courses or certifications, specifying details such as course name, description, duration, and prerequisites.</li>
+
+        <li><strong>Edit Existing Programs:</strong> Update course information, modify schedules, or make adjustments based on student feedback and industry trends.</li>
+
+        <li><strong>Manage Enrollment:</strong> Monitor enrollment numbers, track student progress, and communicate important information to participants.</li>
+
+        <li><strong>Access Analytics:</strong> Gain insights into program performance, including enrollment trends, completion rates, and student satisfaction metrics.</li>
+    </ul>
+
+    <p>By leveraging this comprehensive management tool, we ensure that our programs are delivered efficiently and effectively, providing an exceptional learning experience for all participants.</p>
+
+    <p>Ready to take the next step in your professional development journey? Explore our catalog of short courses and certifications today!</p>
+
+</div>

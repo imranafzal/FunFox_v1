@@ -1,0 +1,55 @@
+﻿@model IEnumerable<funfox_App.Models.Program>
+
+@{
+    ViewData["Title"] = "Programs List";
+    Layout = "~/Views/Shared/_admin_Layout.cshtml";
+}
+<div class="d-flex justify-content-start button-strip">
+    <button class="btn button" onclick="window.location.href='@Url.Action("Add","AdminProgram")'"><i class="fa fa-plus-circle icon"></i> Add</button>
+    @if (!string.IsNullOrEmpty(Context.Session.GetString("Bearer_Tokens")))
+    {
+        <label class="d-flex justify-content-end align-items-end pe-3">Hello @Html.Raw(Context.Session.GetString("IdentityUsername"))</label>
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProgramID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProgramName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProgramID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProgramName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.ProgramID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProgramID }, new { @class = "delete-link", onclick = "return confirm('Are you sure you want to delete this record?')" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

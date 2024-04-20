@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Enrollments";
+    Layout = "~/Views/Shared/_admin_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-start button-strip">
+    <button class="btn button" onclick="window.location.href='@Url.Action("EnrollmentList","AdminEnrollManagement")'"><i class="fa fa-list icon"></i> Enrollment List</button>
+    @if (!string.IsNullOrEmpty(Context.Session.GetString("Bearer_Tokens")))
+    {
+        <label class="d-flex justify-content-end align-items-end pe-3">Hello @Html.Raw(Context.Session.GetString("IdentityUsername"))</label>
+    }
+</div>
+<!-- Placeholder for controls -->
+<div id="controlsPlaceholder" class="controls-placeholder">
+    User Enrollment Management Page<br/>
+
+    Our User Enrollment Management Page simplifies the task of overseeing enrolled users. Access a comprehensive list, view enrollment details, and cancel enrollments if necessary. "Utilize search and filter options for efficient navigation". Streamline your enrollment management process with ease.
+
+</div>

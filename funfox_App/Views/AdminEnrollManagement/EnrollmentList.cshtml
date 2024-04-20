@@ -1,0 +1,76 @@
+﻿@model IEnumerable<funfox_App.Models.EnrollmentDetails>
+
+@{
+    ViewData["Title"] = "Admin Enrollment List";
+    Layout = "~/Views/Shared/_admin_Layout.cshtml";
+}
+<div class="d-flex justify-content-start button-strip">
+    @if (!string.IsNullOrEmpty(Context.Session.GetString("Bearer_Tokens")))
+    {
+        <label class="d-flex justify-content-end align-items-end pe-3">Hello @Html.Raw(Context.Session.GetString("IdentityUsername"))</label>
+    }
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.EnrollmentID)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.UserID)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.LastName)
+            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GradeLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Timings)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProgramName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentID)
+            </td>
+                <td>
+                    @Html.DisplayFor(model => item.UserID)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.LastName)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClassName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GradeLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Timings)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProgramName)
+            </td>
+            <td>
+                @Html.ActionLink("Cancel Enrollment", "Delete", new { enrollmentId = item.EnrollmentID }, new { @class = "delete-link", onclick = "return confirm('Are you sure you want to cancel this enrollment?')" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

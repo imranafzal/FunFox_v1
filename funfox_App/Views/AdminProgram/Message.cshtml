@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Message";
+    Layout = "~/Views/Shared/_admin_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-start button-strip">
+    <button class="btn button" onclick="window.location.href='@Url.Action("Add","AdminProgram")'"><i class="fa fa-plus-circle icon"></i> Add</button>
+    <button class="btn button" onclick="window.location.href='@Url.Action("List","AdminProgram")'"><i class="fa fa-list icon"></i> List</button>
+    @if (!string.IsNullOrEmpty(Context.Session.GetString("Bearer_Tokens")))
+    {
+        <label class="d-flex justify-content-end align-items-end pe-3">Hello @Html.Raw(Context.Session.GetString("IdentityUsername"))</label>
+    }
+</div>
+<h5>Message</h5>
+<div class="form-group">
+    @if (ViewBag.Message != null)
+    {
+        if (ViewBag.IsError == null)
+        {
+            <div class="text-success">@Html.Raw(ViewBag.Message)</div>
+        }
+        else
+        {
+            <div class="text-danger">@Html.Raw(ViewBag.Message)</div>
+        }
+    }
+</div>

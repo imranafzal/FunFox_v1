@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Admin";
+    Layout = "~/Views/Shared/_admin_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-start button-strip">
+    @if (!string.IsNullOrEmpty(Context.Session.GetString("Bearer_Tokens")))
+    {
+        <label class="d-flex justify-content-end align-items-end pe-3">Hello @Html.Raw(Context.Session.GetString("IdentityUsername"))</label>
+    }
+</div>
+<!-- Placeholder for controls -->
+<div id="controlsPlaceholder" class="controls-placeholder">
+    Welcome to the Admin Dashboard!<br/> Here, you're in control. From managing programs and classes to overseeing user accounts and enrollment details, this centralized hub puts the power at your fingertips. Add new programs, update class schedules, and effortlessly navigate user profiles. Stay organized and efficient as you drive success for your platform. Let's get started on optimizing your admin experience.
+</div>

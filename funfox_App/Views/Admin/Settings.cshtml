@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Settings";
+    Layout = "~/Views/Shared/_admin_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-start button-strip">
+    
+    <button class="btn button" onclick="window.location.href='@Url.Action("ResetDashboard","AdminUserManagment")'"><i class="fa fa-refresh icon"></i> Reset Dashboard &#xf021;</button>
+
+    @if (!string.IsNullOrEmpty(Context.Session.GetString("Bearer_Tokens")))
+    {
+        <label class="d-flex justify-content-end align-items-end pe-3">Hello @Html.Raw(Context.Session.GetString("IdentityUsername"))</label>
+    }
+</div>
+<!-- Placeholder for controls -->
+<div id="controlsPlaceholder" class="controls-placeholder">
+    Access administrator settings here. Currently, only the dashboard data reset function is available for testing purposes.<br/>
+    All data except Administrator User Account will be deleted.
+</div>

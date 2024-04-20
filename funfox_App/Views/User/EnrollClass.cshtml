@@ -1,0 +1,110 @@
+﻿@model funfox_App.Models.Enrollment
+
+@{
+    ViewData["Title"] = "EnrollClass";
+    Layout = "~/Views/Shared/_user_Layout.cshtml";
+}
+<div class="d-flex justify-content-start button-strip">
+    @if (!string.IsNullOrEmpty(Context.Session.GetString("Bearer_Tokens")))
+    {
+        <label class="d-flex justify-content-end align-items-end pe-3">Hello @Html.Raw(Context.Session.GetString("IdentityUsername"))</label>
+    }
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EnrollClass">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProgramID" class="control-label"></label>
+                <select asp-for="ProgramID" class="form-select" onchange="loadClasses(this)" asp-items="ViewBag.programs">
+                    <option value="">Choose program</option>
+                </select>
+                <span asp-validation-for="ProgramID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClassID" class="control-label"></label>
+                <select asp-for="ClassID" id="ddlClasses" class="form-select" onchange="loadClassDetails(this)" asp-items="ViewBag.classes">
+                    <option value="">Choose class</option>
+                </select>
+                <span asp-validation-for="ClassID" class="text-danger"></span>
+            </div>
+            <div class="form-group" id="details">
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Enroll" class="btn btn-primary" />
+            </div>
+        </form>
+        <div class="form-group">
+            @if (ViewBag.Message != null)
+            {
+                if (ViewBag.IsError == null)
+                {
+                    <div class="text-success">@Html.Raw(ViewBag.Message)</div>
+                }
+                else
+                {
+                    <div class="text-danger">@Html.Raw(ViewBag.Message)</div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts 
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var a = 0;
+        });
+        function loadClasses(obj) {
+            var value = obj.value;
+            var url = "@ViewData["baseurl"]";
+            $.post(url + "User/GetClassesByProgramId", { programID: value }, function (data) {
+                debugger;
+                PopulateDropDown("#ddlClasses", data);
+            });
+        }
+        function PopulateDropDown(dropDownId, list, selectedId) {
+            $(dropDownId).empty();
+            $(dropDownId).append("<option>--Pick Class--</option>")
+            $.each(list, function (index, row) {
+                $(dropDownId).append("<option value='" + row.classID + "'>" + row.className + "</option>")
+            });
+        }
+
+        function loadClassDetails(obj) {
+            var value = obj.value;
+            var url = "@ViewData["baseurl"]";
+            $.post(url + "User/GetClassesDetails", { classID: value }, function (data) {
+                debugger;
+                PopulateClassDetails(data);
+            });
+        }
+
+        function handleNullString(val) { 
+            return val == undefined || val == null ? "-" : val;
+        } 
+
+        function PopulateClassDetails(details)
+        {
+            debugger;
+            console.log(details)
+
+            var str_details = "<label class='control-label'>Class Name</label>&nbsp;"+
+                "<label class='control-label fw-bold'>" + handleNullString(details.className) + "</label><br/>" +
+                "<label class='control-label'>Grade Level</label>&nbsp;" +
+                "<label class='control-label fw-bold'>" + handleNullString(details.gradeLevel) + "</label><br/>" +
+                "<label class='control-label'>Timings</label>&nbsp;" +
+                "<label class='control-label fw-bold'>" + handleNullString(details.timings) + "</label><br/>" +
+                "<label class='control-label'>Class Size</label>&nbsp;" +
+                "<label class='control-label fw-bold'>" + handleNullString(details.maxClassSize) + "</label><br/>";
+
+            $("#details").empty().append(str_details);
+        }
+
+    </script>
+}

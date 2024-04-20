@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Class";
+    Layout = "~/Views/Shared/_admin_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-start button-strip">
+    <button class="btn button" onclick="window.location.href='@Url.Action("Add","AdminClass")'"><i class="fa fa-plus-circle icon"></i> Add</button>
+    <button class="btn button" onclick="window.location.href='@Url.Action("List","AdminClass")'"><i class="fa fa-list icon"></i> List</button>
+    @if (!string.IsNullOrEmpty(Context.Session.GetString("Bearer_Tokens")))
+    {
+        <label class="d-flex justify-content-end align-items-end pe-3">Hello @Html.Raw(Context.Session.GetString("IdentityUsername"))</label>
+    }
+</div>
+<!-- Placeholder for controls -->
+<div id="controlsPlaceholder" class="controls-placeholder">
+    Congratulations on setting up programs with Funfox! <br/></br>
+    To enhance your experience, we're excited to introduce a new class exclusively for participants like you. Join us as we delve deeper into the core concepts of your chosen program, providing valuable insights and hands-on learning opportunities. Stay tuned for updates and class schedules!
+    blah blah blah
+</div>

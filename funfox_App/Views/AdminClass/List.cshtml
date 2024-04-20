@@ -1,0 +1,67 @@
+﻿@model IEnumerable<funfox_App.Models.Class>
+
+@{
+    ViewData["Title"] = "Class List";
+    Layout = "~/Views/Shared/_admin_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-start button-strip">
+    <button class="btn button" onclick="window.location.href='@Url.Action("Add","AdminClass")'"><i class="fa fa-plus-circle icon"></i> Add</button>
+    @if (!string.IsNullOrEmpty(Context.Session.GetString("Bearer_Tokens")))
+    {
+        <label class="d-flex justify-content-end align-items-end pe-3">Hello @Html.Raw(Context.Session.GetString("IdentityUsername"))</label>
+    }
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GradeLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Timings)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxClassSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProgramID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClassID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClassName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GradeLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Timings)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxClassSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProgramID)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ClassID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ClassID }, new { @class = "delete-link", onclick = "return confirm('Are you sure you want to delete this record?')" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

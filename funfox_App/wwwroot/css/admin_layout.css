@@ -1,0 +1,115 @@
+﻿/* Adjustments for the layout */
+body {
+    background-color: #f8f9fa; /* Light gray background for the entire page */
+}
+
+.header {
+    position: relative; /* Relative positioning for absolute carousel */
+    height: 20vh;
+    background-color: #ffffff; /* White background for the header */
+    border-bottom: 1px solid #dee2e6; /* Light border at the bottom of the header */
+    padding: 20px; /* Add padding for better visibility */
+}
+
+.carousel {
+    position: absolute; /* Absolute positioning for the carousel */
+    top: 0; /* Position at the top of the header */
+    left: 0; /* Position at the left of the header */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+.carousel-item {
+    height: 100%;
+}
+
+    .carousel-item img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+
+.carousel-caption {
+    position: absolute; /* Position absolute to overlay captions on images */
+    bottom: 20px; /* Adjusted distance from bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for captions */
+    color: #ffffff; /* White text color for captions */
+    padding: 10px 20px; /* Padding for captions */
+    border-radius: 5px; /* Rounded corners for captions */
+}
+
+.carousel-indicators {
+    bottom: 20px; /* Adjusted distance from bottom */
+}
+
+.section {
+    min-height: 80vh;
+    background-color: #ffffff; /* White background for the main content section */
+    border-radius: 5px; /* Add rounded corners to the main content section */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    margin-top: 20px; /* Add margin at the top for separation */
+    padding: 20px; /* Add padding for better visibility */
+    overflow-y: auto; /* Enable vertical scrollbar when content overflows */
+}
+
+.button-strip {
+    background-color: #007bff; /* Blue background for the button strip */
+    padding: 10px; /* Padding for the button strip */
+    border-radius: 5px; /* Add rounded corners to the button strip */
+    margin-bottom: 20px; /* Add margin at the bottom for separation */
+}
+
+.button {
+    background-color: #ffffff; /* White color for the buttons */
+    border: none;
+    color: #007bff; /* Blue color for the button text */
+    padding: 5px 10px; /* Adjusted padding */
+    font-size: 14px; /* Adjusted font size */
+    cursor: pointer;
+    margin-right: 10px; /* Add margin between buttons */
+    border-radius: 5px; /* Add rounded corners to the buttons */
+}
+    /* Darker background on mouse-over */
+    .button:hover {
+        background-color: #0056b3; /* Darker shade of blue */
+        color: #ffffff; /* White color for the button text on hover */
+    }
+
+.col-border {
+    border-right: 1px solid #dee2e6; /* Light gray border on right */
+}
+
+.controls-placeholder {
+    height: calc(80vh - 160px); /* Adjusted height */
+    background-color: #ffffff; /* White background for the controls placeholder */
+    border: 1px solid #dee2e6; /* Light border for better separation */
+    border-radius: 5px; /* Add rounded corners to the controls placeholder */
+    padding: 10px; /* Optional padding */
+    overflow-y: auto; /* Vertical scrollbar when overflow */
+}
+
+.nav-link {
+    padding: 10px; /* Padding for nav links */
+    color: #495057; /* Dark gray color for text */
+    transition: background-color 0.3s; /* Smooth transition on hover */
+}
+
+    .nav-link:hover {
+        background-color: #e9ecef; /* Light gray background on hover */
+        color: #007bff; /* Blue color for text on hover */
+    }
+
+    .nav-link i {
+        margin-right: 5px; /* Add margin between icon and text */
+    }
+
+    .nav-link.active {
+        background-color: #007bff; /* Blue background for active link */
+        color: #ffffff; /* White text color for active link */
+    }

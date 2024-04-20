@@ -1,0 +1,265 @@
+﻿@model funfox_App.Models.User
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_layout2.cshtml";
+}
+
+<div class="tab-content">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="signInTab" data-bs-toggle="tab" data-bs-target="#signIn" type="button" role="tab" aria-controls="signIn" aria-selected="false">
+                Sign In
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="signUpTab" data-bs-toggle="tab" data-bs-target="#signUp" type="button" role="tab" aria-controls="signUp" aria-selected="false">
+                Sign Up
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="forgotPasswordTab" data-bs-toggle="tab" data-bs-target="#forgotPassword" type="button" role="tab" aria-controls="forgotPassword" aria-selected="false">
+                Forgot Password
+            </button>
+        </li>
+    </ul>
+    <div class="tab-pane active" id="signIn" role="tabpanel" aria-labelledby="signInTab">
+        @using (Html.BeginForm("Login", "Home",FormMethod.Post)) 
+        {
+        @Html.AntiForgeryToken()
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    @Html.EditorFor(model => model.Username, new
+                        {
+                            htmlAttributes = new
+                            {
+                                @class = "form-control",
+                                placeholder = "Username",
+                                required = "required"
+                            }
+                        })
+                    @Html.ValidationMessageFor(model => model.Username, "", new
+                        {
+                            @class = "text-danger"
+                        })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    @Html.EditorFor(model => model.Password, new
+                        {
+                            htmlAttributes = new
+                            {
+                                type = "password",
+                                @class = "form-control",
+                                placeholder = "Password",
+                                required = "required"
+                            }
+                        })
+                    @Html.ValidationMessageFor(model => model.Password, "", new
+                        {
+                            @class = "text-danger"
+                        })
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a href="#forgotPasswordTab" class="btn btn-link" data-bs-toggle="tab">Forgot Password?</a>
+            </div>
+            <div class="form-group">
+                @if (ViewBag.Message != null)
+                {
+                    if (ViewBag.IsError == null)
+                    {
+                        <div class="text-success">@Html.Raw(ViewBag.Message)</div>
+                    }
+                    else
+                    {
+                        <div class="text-danger">@Html.Raw(ViewBag.Message)</div>
+                    }
+
+                }
+            </div>
+        }
+    </div>
+    <div class="tab-pane" id="signUp" role="tabpanel" aria-labelledby="signUpTab">
+        
+        @using (Html.BeginForm("SignUp", "Home")) 
+        {
+        @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            @Html.EditorFor(model => model.FirstName, new
+                                {
+                                    htmlAttributes = new
+                                    {
+                                        @class = "form-control",
+                                        placeholder = "First Name",
+                                        required = "required"
+                                    }
+                                })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new
+                                {
+                                    @class = "text-danger"
+                                })
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            @Html.EditorFor(model => model.LastName, new
+                                {
+                                    htmlAttributes = new
+                                    {
+                                        @class = "form-control",
+                                        placeholder = "Last Name",
+                                        required = "required"
+                                    }
+                                })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new
+                                {
+                                    @class = "text-danger"
+                                })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    @Html.EditorFor(model => model.Email, new
+                        {
+                            htmlAttributes = new
+                            {
+                                type = "email",
+                                @class = "form-control",
+                                placeholder = "Email",
+                                required = "required"
+                            }
+                        })
+                    @Html.ValidationMessageFor(model => model.Email, "", new
+                        {
+                            @class = "text-danger"
+                        })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    @Html.EditorFor(model => model.Password, new
+                        {
+                            htmlAttributes = new
+                            {
+                                type = "password",
+                                @class = "form-control",
+                                placeholder = "Password",
+                                required = "required"
+                            }
+                        })
+                    @Html.ValidationMessageFor(model => model.Password, "", new
+                        {
+                            @class = "text-danger"
+                        })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-check-input" type="checkbox" id="myCheck" name="remember" required>
+                    <label class="form-check-label" for="myCheck">I agree on blabla.</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+            <div class="form-group">
+
+                @if (ViewBag.Message != null)
+                {
+                    if (ViewBag.IsError == null)
+                    {
+                        <div class="text-success">@Html.Raw(ViewBag.Message)</div>
+                    }
+                    else
+                    {
+                        <div class="text-danger">@Html.Raw(ViewBag.Message)</div>
+                    }
+                    
+                }
+                
+                @Html.ValidationSummary(true, "", new
+                    {
+                        @class = "text-danger"
+                    })
+            </div>
+
+        }
+    </div>
+    <div class="tab-pane" id="forgotPassword" role="tabpanel" aria-labelledby="forgotPasswordTab">
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" class="form-control" placeholder="Username">
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" onclick="showRecoveryFields()">Forgot Password</button>
+            </div>
+            <div id="recoveryFields" style="display: none;">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        <input type="text" class="form-control" placeholder="Recovery Token">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input type="password" class="form-control" placeholder="New Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary">Update Password</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+   
+    <script>
+        function showtab(tabId) {
+            $("#signInTab", "#signUpTab", "#forgotPasswordTab").each(function () {
+                $(this).attr('aria-selected', 'false');
+            });
+            $("#" + tabId).attr('aria-selected', 'true').trigger('click');
+        }
+
+        function showRecoveryFields() {
+            var recoveryFields = document.getElementById("recoveryFields");
+            if (recoveryFields.style.display === "none") {
+                recoveryFields.style.display = "block";
+            } else {
+                recoveryFields.style.display = "none";
+            }
+        }
+    </script>
+    @if (ViewBag.JavaScriptFunction != null)
+    {
+        <script type="text/javascript">
+            @Html.Raw(ViewBag.JavaScriptFunction)
+        </script>
+    }
+
+}

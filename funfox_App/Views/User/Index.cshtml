@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "User";
+    Layout = "~/Views/Shared/_user_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-start button-strip">
+    @if (!string.IsNullOrEmpty(Context.Session.GetString("Bearer_Tokens")))
+    {
+        <label class="d-flex justify-content-end align-items-end pe-3">Hello @Html.Raw(Context.Session.GetString("IdentityUsername"))</label>
+    }
+</div>
+<!-- Placeholder for controls -->
+<div id="controlsPlaceholder" class="controls-placeholder">
+    Welcome to your User Dashboard!<br/> Your gateway to personalized learning. Here, you have the freedom to explore your profile, enroll in exciting classes, and manage your educational journey with ease. View your profile details, browse available classes, and effortlessly enroll in those that spark your interest. Keep track of your enrolled classes, and if your plans change, cancel enrollments at any time. Empower yourself to learn, grow, and thrive on your terms. Let's embark on this journey together!
+</div>

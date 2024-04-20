@@ -1,0 +1,6 @@
+@funfoxPortalApp_HostAddress = http://localhost:5261
+
+GET {{funfoxPortalApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

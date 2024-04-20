@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_admin_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-start button-strip">
+    <button class="btn button" onclick="window.location.href='@Url.Action("Add","AdminUserManagment")'"><i class="fa fa-plus-circle icon"></i> Add</button>
+    <button class="btn button" onclick="window.location.href='@Url.Action("List","AdminUserManagment")'"><i class="fa fa-list icon"></i> List</button>
+    @if (!string.IsNullOrEmpty(Context.Session.GetString("Bearer_Tokens")))
+    {
+        <label class="d-flex justify-content-end align-items-end pe-3">Hello @Html.Raw(Context.Session.GetString("IdentityUsername"))</label>
+    }
+</div>
+
+<!-- Placeholder for controls -->
+<div id="controlsPlaceholder" class="controls-placeholder">
+     Users Management Page!<br/> This centralized hub empowers Admin to effortlessly create, edit, and delete user profiles. Seamlessly manage user with ease, ensuring smooth operation and security across your platform. Get started now to streamline user administration and optimize your workflow.
+</div>

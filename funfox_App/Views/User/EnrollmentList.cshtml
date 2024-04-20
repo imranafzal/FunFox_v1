@@ -1,0 +1,59 @@
+﻿@model IEnumerable<funfox_App.Models.EnrollmentDetails>
+
+@{
+    ViewData["Title"] = "User Enrollment List";
+    Layout = "~/Views/Shared/_user_Layout.cshtml";
+}
+<div class="d-flex justify-content-start button-strip">
+    <button class="btn button" onclick="window.location.href='@Url.Action("EnrollClass","User")'"><i class="fa fa-plus-circle icon"></i> Enroll Class</button>
+    @if (!string.IsNullOrEmpty(Context.Session.GetString("Bearer_Tokens")))
+    {
+        <label class="d-flex justify-content-end align-items-end pe-3">Hello @Html.Raw(Context.Session.GetString("IdentityUsername"))</label>
+    }
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.EnrollmentID)
+            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GradeLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Timings)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProgramName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClassName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GradeLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Timings)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProgramName)
+            </td>
+            <td>
+                    @Html.ActionLink("Cancel Enrollment", "Delete", new { enrollmentId = item.EnrollmentID }, new { @class = "delete-link", onclick = "return confirm('Are you sure you want to cancel this enrollment?')" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
